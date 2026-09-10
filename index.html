@@ -152,6 +152,8 @@
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="data/AOIEasternVisayas_22.js"></script>
+        <script src="data/BuiltupAreasfromLandUse_1.js"></script>
+        <script src="data/Municipalities_3.js"></script>
         <script src="data/TDP20412050_23.js"></script>
         <script src="data/TDP20312040_24.js"></script>
         <script src="data/TDP20212030_25.js"></script>
@@ -886,6 +888,65 @@
             }
         });
 
+        function style_BuiltupAreasfromLandUse_1_0() {
+            return {
+                pane: 'pane_BuiltupAreasfromLandUse_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,0.7372549019607844)', 
+                interactive: false,  
+            }
+        }
+        map.createPane('pane_BuiltupAreasfromLandUse_1');
+        map.getPane('pane_BuiltupAreasfromLandUse_1').style.zIndex = 430;
+        map.getPane('pane_BuiltupAreasfromLandUse_1').style['mix-blend-mode'] = 'normal';
+        var layer_BuiltupAreasfromLandUse_1 = new L.geoJson(json_BuiltupAreasfromLandUse_1, {
+            attribution: '',
+            interactive: false, 
+            dataVar: 'json_BuiltupAreasfromLandUse_1',
+            layerName: 'layer_BuiltupAreasfromLandUse_1',
+            pane: 'pane_BuiltupAreasfromLandUse_1',
+            style: style_BuiltupAreasfromLandUse_1_0,
+        });
+        bounds_group.addLayer(layer_BuiltupAreasfromLandUse_1);
+        map.addLayer(layer_BuiltupAreasfromLandUse_1);
+
+        function style_Municipalities_3_0() {
+            return {
+                pane: 'pane_Municipalities_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,178,151,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Municipalities_3');
+        map.getPane('pane_Municipalities_3').style.zIndex = 403;
+        map.getPane('pane_Municipalities_3').style['mix-blend-mode'] = 'normal';
+        var layer_Municipalities_3 = new L.geoJson(json_Municipalities_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Municipalities_3',
+            layerName: 'layer_Municipalities_3',
+            pane: 'pane_Municipalities_3',
+
+            style: style_Municipalities_3_0,
+        });
+        bounds_group.addLayer(layer_Municipalities_3);
+        map.addLayer(layer_Municipalities_3);
+
 var overlaysTree = [
     {label: '<b>Base Layers</b>',  selectAllCheckbox: true, children: [
         {label: '<img src="legend/Substations_27.png" /> Substations', layer: layer_Substations_27, default: true},
@@ -893,7 +954,9 @@ var overlaysTree = [
         {label: '<img src="legend/TDP20212030_25.png" /> TDP 2021-2030', layer: layer_TDP20212030_25, default: true},
         {label: '<img src="legend/TDP20312040_24.png" /> TDP 2031-2040', layer: layer_TDP20312040_24, default: true},
         {label: '<img src="legend/TDP20412050_23.png" /> TDP 2041-2050', layer: layer_TDP20412050_23, default: true},
+        {label: '<img src="legend/Municipalities_3.png" /> Municipalities', layer: layer_Municipalities_3, default: true},
         {label: '<img src="legend/AOIEasternVisayas_22.png" /> AOI (Eastern Visayas)', layer: layer_AOIEasternVisayas_22, default: true},
+        {label: '<img src="legend/BuiltupAreasfromLandUse_1.png" /> Built-up Areas (from Land Use)', layer: layer_BuiltupAreasfromLandUse_1, default: true},
     ]},
 
     {label: '<b>Large-Scale RE Sites</b>', collapsed: true, selectAllCheckbox: false, children: [
