@@ -7,7 +7,7 @@ ICSC Energy Policy Team
 Current Release: 
 
 2026-09-10 
-Region VIII (Eastern Visayas) Philippines
+<br> Region VIII (Eastern Visayas) Philippines
 <br>Solar, Wind, Biomass
 
 
