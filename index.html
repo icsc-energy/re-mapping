@@ -17,126 +17,205 @@
         <link rel="stylesheet" href="css/leaflet-measure.css">
 
         <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
 
-        body, .leaflet-control, .leaflet-popup-content, .legend, .info, .abstract, .leaflet-control-layers {
-            font-family: 'DM Sans', sans-serif;
-        }
+                .leaflet-control-layers-toggle {
+                    display: none !important;
+                }
 
-        .legend {
-            background: rgba(255, 255, 255, 0.92);
-            padding: 12px 16px 10px 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-            font-size: 13px;
-            line-height: 1.7;
-            min-width: 130px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            user-select: none;
-        }
+                .leaflet-control-layers-expanded {
+                    padding-top: 0 !important;
+                }
 
-        .legend,
-        .legend * {
-            font-family: 'DM Sans', sans-serif !important;
-        }
+                html, body {
+                    width: 100%;
+                    height: 100%;
+                    padding: 0;
+                    margin: 0;
+                    overflow: hidden;
+                }
 
-        .legend-title {
-            margin: 0 0 4px 0;
-            font-size: 14px;
-            font-weight: 700;
-            color: #2c3e50;
-            letter-spacing: 0.3px;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 4px;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 1px 0;
-            color: #2c3e50;
-        }
-        .legend-color {
-            width: 22px;
-            height: 22px;
-            border-radius: 4px;
-            flex-shrink: 0;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            transition: transform 0.15s;
-        }
-        .legend-color:hover {
-            transform: scale(1.08);
-        }
-        .legend-label {
-            font-weight: 500;
-        }
-        .legend-label-small {
-            font-weight: 400;
-            color: #555;
-            font-size: 12px;
-        }
+                #map {
+                    width: 100%;
+                    height: calc(100vh - 55px);
+                    padding: 0;
+                    margin: 0;
+                }
 
-        .leaflet-control-layers,
-        .leaflet-control-layers *,
-        .leaflet-layerstree-header,
-        .leaflet-layerstree-header *,
-        .leaflet-layerstree-node,
-        .leaflet-layerstree-node * {
-            font-family: 'DM Sans', sans-serif !important;
-        }
+                .map-header {
+                    height: 50px;
+                    width: 100%;
+                    background-color: rgba(255, 255, 255, 0.75);
+                    color: #2c3e50;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 16px;
+                    box-sizing: border-box;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    z-index: 1000;
+                    position: relative;
+                }
 
-        .abstractUncollapsed {
-            max-width: 300px !important;
-            padding: 12px 16px !important;
-            background: rgba(255,255,255,0.92);
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            font-size: 11px;
-            line-height: 1.5;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.3);
-            margin-left: 8px;
-        }
-        .abstract {
-            width: 30px;
-            height: 30px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            margin-left: 8px;
-            color: #2c3e50;
-        }
-        .abstract:hover {
-            background: rgba(240,240,240,0.9);
-        }
+                .header-logo {
+                    height: 36px;
+                    width: auto;
+                    margin-right: 12px;
+                }
 
-        .logo-control {
-            background: transparent !important;
-            padding: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
-            margin: 0 0 20px 20px; 
-        }
+                .header-titles {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .header-title {
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 1.2;
+                }
+
+                .header-subtitle {
+                    font-size: 14px;
+                    opacity: 0.85;
+                    margin-top: 2px;
+                }
+
+                body, .leaflet-control, .leaflet-popup-content, .legend, .info, .abstract, .leaflet-control-layers, .map-header {
+                    font-family: 'DM Sans', sans-serif;
+                }
+
+                .legend {
+                    background: rgba(255, 255, 255, 0.92);
+                    padding: 12px 16px 10px 16px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+                    font-size: 12px;
+                    line-height: 1.7;
+                    min-width: 130px;
+                    backdrop-filter: blur(4px);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    user-select: none;
+                }
+
+                .legend,
+                .legend * {
+                    font-family: 'DM Sans', sans-serif !important;
+                }
+
+                .legend-title {
+                    margin: 0 0 4px 0;
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                    letter-spacing: 0.3px;
+                    padding-bottom: 4px;
+                }
+                .legend-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 1px 0;
+                    color: #2c3e50;
+                }
+                .legend-color {
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 4px;
+                    flex-shrink: 0;
+                    border: 1px solid rgba(0, 0, 0, 0.08);
+                    transition: transform 0.15s;
+                }
+                .legend-color:hover {
+                    transform: scale(1.08);
+                }
+                .legend-label {
+                    font-weight: 500;
+                }
+                .legend-label-small {
+                    font-weight: 400;
+                    color: #555;
+                    font-size: 12px;
+                }
+
+                .leaflet-control-layers,
+                .leaflet-control-layers *,
+                .leaflet-layerstree-header,
+                .leaflet-layerstree-header *,
+                .leaflet-layerstree-node,
+                .leaflet-layerstree-node * {
+                    font-family: 'DM Sans', sans-serif !important;
+                }
+
+                .abstractUncollapsed {
+                    max-width: 300px !important;
+                    padding: 12px 16px !important;
+                    background: rgba(255,255,255,0.92);
+                    border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                    font-size: 11px;
+                    line-height: 1.5;
+                    backdrop-filter: blur(4px);
+                    border: 1px solid rgba(255,255,255,0.3);
+                    margin-left: 8px;
+                }
+                .abstract {
+                    width: 30px;
+                    height: 30px;
+                    background: rgba(255,255,255,0.9);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 18px;
+                    cursor: pointer;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                    border: 1px solid rgba(255,255,255,0.3);
+                    margin-left: 8px;
+                    color: #2c3e50;
+                }
+                .abstract:hover {
+                    background: rgba(240,240,240,0.9);
+                }
+
+                .logo-control {
+                    background: transparent !important;
+                    padding: 0 !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin: 0 0 20px 20px; 
+                }
+
+                .bottom-left-attribution {
+                    background: rgba(255, 255, 255, 0.7);
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-size: 11px;
+                    color: #444;
+                    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+                    backdrop-filter: blur(2px);
+                    margin-bottom: 10px !important;
+                    margin-left: 10px !important;
+                }
+
+                .bottom-left-attribution a {
+                    color: #025376;
+                    text-decoration: none;
+                    font-weight: 200;
+                }
+
+                .bottom-left-attribution a:hover {
+                    text-decoration: underline;
+                }
         </style>
-
-        <title>Potential Renewable Energy Areas in Eastern Visayas</title>
-    </head>
-    <body>
-        <div id="map">
+<body>
+    <header class="map-header">
+        <img src="assets\ICSC_logo_transparent.png" alt="Logo" class="header-logo" />
+        <div class="header-titles">
+            <div class="header-title">Potential Renewable Energy Development Zones</div>
+            <div class="header-subtitle">Eastern Visayas Region</div>
         </div>
+    </header>
+    <div id="map">
+    </div>       
 
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
@@ -158,6 +237,7 @@
         <script src="data/TDP20312040_24.js"></script>
         <script src="data/TDP20212030_25.js"></script>
         <script src="data/ExistingTransmissionLinesfromNGCP_26.js"></script>
+        <script src="data/DistributionLinesr8_distribution_0.js"></script>
         <script src="data/Substations_27.js"></script>
 
         <script>
@@ -168,7 +248,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[11.188786530816241,123.88504018427727],[12.690206669265939,126.78194334194265]]);
+        });
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -242,17 +322,6 @@
             }
         }
 
-        var title = new L.Control({'position':'topleft'});
-        title.onAdd = function (map) {
-            this._div = L.DomUtil.create('div', 'info');
-            this.update();
-            return this._div;
-        };
-        title.update = function () {
-            this._div.innerHTML = '<h2>Potential Renewable Energy Areas in Eastern Visayas</h2>';
-        };
-        title.addTo(map);
-
         var abstract = new L.Control({'position':'topleft'});
         abstract.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'leaflet-control abstractUncollapsed');
@@ -270,7 +339,7 @@
         abstract.show = function () {
             this._div.classList.remove("abstract");
             this._div.classList.add("abstractUncollapsed");
-            this._div.innerHTML = 'This suitability map was generated using an Analytic Hierarchy Process and Technique for Order Preference by Similarity to Ideal Solution (AHP-TOPSIS) workflow. Criteria for determining potential RE areas are as follows: yearly global horizontal irradiance (kWh/m^2/year) for solar, wind speed (m/s) and wind power density (W/m^2) for wind, biomass resource potential (MJ/Ha) of coco husk and shell, slope, aspect, land cover, and distance to urban areas, transmission lines, roads, and substations. <br /><br />Areas with no suitability classification fall under constraints, which include protected areas, indigenous areas, key biodiversity areas, cultural heritage sites, water bodies, existing renewable energy power plants, very highly susceptible areas to rain-induced landslides, and active faults.<br /><br />Suitability criteria were given importance weights based on the consolidated AHP pairwise comparisons of renewable energy experts: eight (8) for solar and wind, and five (5) for biomass. TOPSIS uses these weights to calculate the relative closeness of an area to an ideal (maximum benefits, minimum costs) and non-ideal (minimum benefits, maximum costs) solution. Results are classified to five tiers through natural breaks (Jenks).<br />';
+            this._div.innerHTML = 'The Analytic Hierarchy Process and Technique for Order Preference by Similarity to Ideal Solution (AHP-TOPSIS) were used to identify potential renewable energy development zones with the following criteria: annual global horizontal irradiance (kWh/sqm/year) for solar, wind speed (m/s) and wind power density (W/sqm) for wind, biomass resource potential (MJ/ha) of coco husk and shell for biomass, along with slope, aspect, land cover, and distance to urban areas, transmission lines, roads, and substations. <br /><br />Areas with no suitability classification fall under constraints, which include protected areas, indigenous areas, key biodiversity areas, cultural heritage sites, water bodies, existing renewable energy power plants, very highly susceptible areas to rain-induced landslides, and active faults.<br /><br />Suitability criteria were given importance weights based on the consolidated AHP pairwise comparisons of renewable energy experts: eight (8) for solar and wind, and five (5) for biomass. TOPSIS uses these weights to calculate the relative closeness of an area to an ideal (maximum benefits, minimum costs) and non-ideal (minimum benefits, maximum costs) solution. Results are classified to five tiers through natural breaks (Jenks).<br />';
         };
         abstract.addTo(map);
 
@@ -278,48 +347,47 @@
             position: 'topleft'
         }).addTo(map);
 
-        var measureControl = new L.Control.Measure({
-            position: 'topleft',
-            primaryLengthUnit: 'meters',
-            secondaryLengthUnit: 'kilometers',
-            primaryAreaUnit: 'sqmeters',
-            secondaryAreaUnit: 'hectares'
-        });
-        measureControl.addTo(map);
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
-
-
-        var legend = L.control({ position: 'bottomright' });
-        legend.onAdd = function(map) {
-            var div = L.DomUtil.create('div', 'legend');
-            div.innerHTML =
-                '<div class="legend-title">Suitability Level</div>' +
-                '<div style="margin-top:4px;font-size:11px;color:#888;padding-top:3px;">(using natural breaks/Jenks)</div>'+
-                '<div class="legend-item"><span class="legend-color" style="background:#fde725;"></span><span class="legend-label">Very High</span></div>' +
-                '<div class="legend-item"><span class="legend-color" style="background:#5dc863;"></span><span class="legend-label">High</span></div>' +
-                '<div class="legend-item"><span class="legend-color" style="background:#21908d;"></span><span class="legend-label">Moderate</span></div>' +
-                '<div class="legend-item"><span class="legend-color" style="background:#3b528b;"></span><span class="legend-label">Low</span></div>' +
-                '<div class="legend-item"><span class="legend-color" style="background:#440154;"></span><span class="legend-label">Very Low</span></div>' ;
+        var defaultExtentControl = L.control({ position: 'topleft' });
+        defaultExtentControl.onAdd = function(map) {
+            var div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+            var btn = L.DomUtil.create('a', '', div);
             
+            btn.innerHTML = '<i class="fas fa-home" style="line-height: 30px; font-size: 14px; color: #333;"></i>';
+            btn.title = 'Zoom to Default Extent';
+            btn.href = '#';
+            btn.style.width = '30px';
+            btn.style.height = '30px';
+            btn.style.display = 'block';
+            btn.style.textAlign = 'center';
+            btn.style.backgroundColor = '#fff';
+
+            L.DomEvent.disableClickPropagation(btn);
+            
+            btn.onclick = function(e) {
+                e.preventDefault();
+                map.fitBounds(layer_AOIEasternVisayas_22.getBounds(), {
+                    padding: [50, 50],
+                    maxZoom: 9
+                });
+            };
+
             return div;
         };
-        legend.addTo(map);
+        defaultExtentControl.addTo(map);
 
-        var logoControl = L.control({ position: 'bottomleft' });
+        var customAttribution = L.control({ position: 'bottomleft' });
 
-        logoControl.onAdd = function(map) {
-            var div = L.DomUtil.create('div', 'logo-control');
-            div.innerHTML = '<img src="assets/ICSC_logo_transparent.png" alt="Logo" style="height:70px; width:auto;">';
+        customAttribution.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'bottom-left-attribution');
+            div.innerHTML = 'Map Data | <a href="#" target="_blank">PSA, NAMRIA, UN-OCHA, Eastern Visayas LGUs, NGCP, OpenStreetMap, Carto</a>';
             return div;
         };
 
-        logoControl.addTo(map);
+        customAttribution.addTo(map);
 
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-
         map.createPane('pane_CartoLight_0');
         map.getPane('pane_CartoLight_0').style.zIndex = 400;
         var layer_CartoLight_0 = L.tileLayer('https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.pn', {
@@ -330,6 +398,16 @@
             maxZoom: 28,
         });
         map.addLayer(layer_CartoLight_0);
+
+        map.createPane('pane_WorldImagery_0');
+        map.getPane('pane_WorldImagery_0').style.zIndex = 400;
+        var layer_WorldImagery_0 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_WorldImagery_0',
+            opacity: 1.0,
+            attribution: 'Tiles &copy; Esri',
+            minZoom: 1,
+            maxZoom: 28,
+        });
 
         map.createPane('pane_WindEnergy150m_1');
         map.getPane('pane_WindEnergy150m_1').style.zIndex = 401;
@@ -549,6 +627,7 @@
         });
         bounds_group.addLayer(layer_AOIEasternVisayas_22);
         map.addLayer(layer_AOIEasternVisayas_22);
+        map.fitBounds(layer_AOIEasternVisayas_22.getBounds(), {padding: [50, 50], maxZoom: 9});
 
         function pop_TDP20412050_23(feature, layer) {
             layer.on({
@@ -581,7 +660,7 @@
                 pane: 'pane_TDP20412050_23',
                 opacity: 1,
                 color: 'rgba(115,16,22,1.0)',
-                dashArray: '',
+                dashArray: '1, 5',
                 lineCap: 'round',
                 lineJoin: 'round',
                 weight: 2.0,
@@ -602,7 +681,6 @@
             style: style_TDP20412050_23_0,
         });
         bounds_group.addLayer(layer_TDP20412050_23);
-        map.addLayer(layer_TDP20412050_23);
 
         function pop_TDP20312040_24(feature, layer) {
             layer.on({
@@ -635,7 +713,7 @@
                 pane: 'pane_TDP20312040_24',
                 opacity: 1,
                 color: 'rgba(115,16,22,1.0)',
-                dashArray: '',
+                dashArray: '1, 5',
                 lineCap: 'round',
                 lineJoin: 'round',
                 weight: 2.0,
@@ -656,7 +734,6 @@
             style: style_TDP20312040_24_0,
         });
         bounds_group.addLayer(layer_TDP20312040_24);
-        map.addLayer(layer_TDP20312040_24);
 
         function pop_TDP20212030_25(feature, layer) {
             layer.on({
@@ -689,7 +766,7 @@
                 pane: 'pane_TDP20212030_25',
                 opacity: 1,
                 color: 'rgba(115,16,22,1.0)',
-                dashArray: '',
+                dashArray: '1, 5',
                 lineCap: 'round',
                 lineJoin: 'round',
                 weight: 2.0,
@@ -710,7 +787,6 @@
             style: style_TDP20212030_25_0,
         });
         bounds_group.addLayer(layer_TDP20212030_25);
-        map.addLayer(layer_TDP20212030_25);
 
         function pop_ExistingTransmissionLinesfromNGCP_26(feature, layer) {
             layer.on({
@@ -748,7 +824,7 @@
                 lineJoin: 'round',
                 weight: 2.0,
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_ExistingTransmissionLinesfromNGCP_26');
@@ -756,7 +832,7 @@
         map.getPane('pane_ExistingTransmissionLinesfromNGCP_26').style['mix-blend-mode'] = 'normal';
         var layer_ExistingTransmissionLinesfromNGCP_26 = new L.geoJson(json_ExistingTransmissionLinesfromNGCP_26, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_ExistingTransmissionLinesfromNGCP_26',
             layerName: 'layer_ExistingTransmissionLinesfromNGCP_26',
             pane: 'pane_ExistingTransmissionLinesfromNGCP_26',
@@ -765,6 +841,82 @@
         });
         bounds_group.addLayer(layer_ExistingTransmissionLinesfromNGCP_26);
         map.addLayer(layer_ExistingTransmissionLinesfromNGCP_26);
+
+        function pop_Substations_27(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                <tr><td><b>Name:</b></td><td>' + (feature.properties['name'] !== null ? autolinker.link(String(feature.properties['name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td></tr>\
+                <tr><td><b>Voltage:</b></td><td>' + (feature.properties['voltage'] !== null ? autolinker.link(String(feature.properties['voltage']).replace(/'/g, '\'').toLocaleString()) : '') + '</td></tr>\
+            </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function pop_DistributionLinesr8_distribution_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                <tr><td><b>Name:</b></td><td>' + (feature.properties['name'] !== null ? autolinker.link(String(feature.properties['name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td></tr>\
+                <tr><td><b>Operator:</b></td><td>' + (feature.properties['operator'] !== null ? autolinker.link(String(feature.properties['operator']).replace(/'/g, '\'').toLocaleString()) : '') + '</td></tr>\
+            </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_DistributionLinesr8_distribution_0() {
+            return {
+                pane: 'pane_DistributionLinesr8_distribution_0',
+                opacity: 1,
+                color: 'rgba(167.76,105.35,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_DistributionLinesr8_distribution_0');
+        map.getPane('pane_DistributionLinesr8_distribution_0').style.zIndex = 426;
+        map.getPane('pane_DistributionLinesr8_distribution_0').style['mix-blend-mode'] = 'normal';
+        var layer_DistributionLinesr8_distribution_0 = new L.geoJson(json_DistributionLinesr8_distribution_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DistributionLinesr8_distribution_0',
+            layerName: 'layer_DistributionLinesr8_distribution_0',
+            pane: 'pane_DistributionLinesr8_distribution_0',
+            onEachFeature: pop_DistributionLinesr8_distribution_0,
+            style: style_DistributionLinesr8_distribution_0,
+        });
+        bounds_group.addLayer(layer_DistributionLinesr8_distribution_0);
+        map.addLayer(layer_DistributionLinesr8_distribution_0);
 
         function pop_Substations_27(feature, layer) {
             layer.on({
@@ -917,6 +1069,31 @@
         bounds_group.addLayer(layer_BuiltupAreasfromLandUse_1);
         map.addLayer(layer_BuiltupAreasfromLandUse_1);
 
+        function pop_Municipalities_3_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+
+            });
+            var popupContent = '<table>\
+                <tr><td><b>City/Municipality:</b></td><td>' + (feature.properties['adm3_name'] !== null ? autolinker.link(String(feature.properties['adm3_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td></tr>\
+                <tr><td><b>Province:</b></td><td>' + (feature.properties['adm2_name'] !== null ? autolinker.link(String(feature.properties['adm2_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td></tr>\
+                <tr><td><b>Region:</b></td><td>' + (feature.properties['adm1_name'] !== null ? autolinker.link(String(feature.properties['adm1_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td></tr>\
+            </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
+        }
+
         function style_Municipalities_3_0() {
             return {
                 pane: 'pane_Municipalities_3',
@@ -929,7 +1106,7 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(190,178,151,0.0)',
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_Municipalities_3');
@@ -937,123 +1114,171 @@
         map.getPane('pane_Municipalities_3').style['mix-blend-mode'] = 'normal';
         var layer_Municipalities_3 = new L.geoJson(json_Municipalities_3, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_Municipalities_3',
             layerName: 'layer_Municipalities_3',
-            pane: 'pane_Municipalities_3',
-
             style: style_Municipalities_3_0,
-        });
+            pane: 'pane_Municipalities_3',
+             onEachFeature: pop_Municipalities_3_0,
+            pointToLayers: [function (feature, latlng) {
+                return L.circleMarker(latlng, style_Substations_27_0(feature));
+            },function (feature, latlng) {
+                return L.circleMarker(latlng, style_Substations_27_1(feature));
+            },
+
+        ]});
         bounds_group.addLayer(layer_Municipalities_3);
-        map.addLayer(layer_Municipalities_3);
 
 var overlaysTree = [
-    {label: '<b>Base Layers</b>',  selectAllCheckbox: true, children: [
-        {label: '<img src="legend/Substations_27.png" /> Substations', layer: layer_Substations_27, default: true},
-        {label: '<img src="legend/ExistingTransmissionLinesfromNGCP_26.png" /> Existing Transmission Lines (from NGCP)', layer: layer_ExistingTransmissionLinesfromNGCP_26, default: true},
-        {label: '<img src="legend/TDP20212030_25.png" /> TDP 2021-2030', layer: layer_TDP20212030_25, default: true},
-        {label: '<img src="legend/TDP20312040_24.png" /> TDP 2031-2040', layer: layer_TDP20312040_24, default: true},
-        {label: '<img src="legend/TDP20412050_23.png" /> TDP 2041-2050', layer: layer_TDP20412050_23, default: true},
-        {label: '<img src="legend/Municipalities_3.png" /> Municipalities', layer: layer_Municipalities_3, default: true},
-        {label: '<img src="legend/AOIEasternVisayas_22.png" /> AOI (Eastern Visayas)', layer: layer_AOIEasternVisayas_22, default: true},
-        {label: '<img src="legend/BuiltupAreasfromLandUse_1.png" /> Built-up Areas (from Land Use)', layer: layer_BuiltupAreasfromLandUse_1, default: true},
-    ]},
-
-    {label: '<b>Large-Scale RE Sites</b>', collapsed: true, selectAllCheckbox: false, children: [
-        {label: "Solar Energy", layer: layer_SolarEnergy_21, default: false, radioGroup: 'raster'},
-        {label: "Wind Energy (100m)", layer: layer_WindEnergy100m_20, default: false, radioGroup: 'raster'},
-        {label: "Biomass Energy (Coco shell, husk)", layer: layer_BiomassEnergyCocoshellhusk_19, default: false, radioGroup: 'raster'},
-    ]},
-    {label: '<b>Small-Scale RE Sites</b>', collapsed: true, selectAllCheckbox: false, children: [
-        {label: "Solar Energy", layer: layer_SolarEnergy_18, default: false, radioGroup: 'raster'},
-        {label: "Wind Energy (80m)", layer: layer_WindEnergy80m_17, default: false, radioGroup: 'raster'},
-        {label: "Biomass Energy (Coco shell, husk)", layer: layer_BiomassEnergyCocoshellhusk_16, default: false, radioGroup: 'raster'},
-    ]},
-    {label: '<b>Solar Outlook - 2030 to 2050</b>', collapsed: true, selectAllCheckbox: false, children: [
-        {label: "Solar - Current", layer: layer_SolarCurrent_15, default: false, radioGroup: 'raster'},
-        {label: "Solar - 2030", layer: layer_Solar2030_14, default: false, radioGroup: 'raster'},
-        {label: "Solar - 2040", layer: layer_Solar2040_13, default: false, radioGroup: 'raster'},
-        {label: "Solar - 2050", layer: layer_Solar2050_12, default: false, radioGroup: 'raster'},
-    ]},
-    {label: '<b>Wind Outlook - 2030 to 2050 (100m)</b>', collapsed: true, selectAllCheckbox: false, children: [
-        {label: "Wind - Current", layer: layer_WindCurrent_11, default: false, radioGroup: 'raster'},
-        {label: "Wind - 2030", layer: layer_Wind2030_10, default: false, radioGroup: 'raster'},
-        {label: "Wind - 2040", layer: layer_Wind2040_9, default: false, radioGroup: 'raster'},
-        {label: "Wind - 2050", layer: layer_Wind2050_8, default: false, radioGroup: 'raster'},
-    ]},
-    {label: '<b>Biomass Outlook - 2030 to 2050</b>', collapsed: true, selectAllCheckbox: false, children: [
-        {label: "Biomass - Current", layer: layer_BiomassCurrent_7, default: false, radioGroup: 'raster'},
-        {label: "Biomass - 2030", layer: layer_Biomass2030_6, default: false, radioGroup: 'raster'},
-        {label: "Biomass - 2040", layer: layer_Biomass2040_5, default: false, radioGroup: 'raster'},
-        {label: "Biomass - 2050", layer: layer_Biomass2050_4, default: false, radioGroup: 'raster'},
-    ]},
-    {label: '<b>Potential Wind Areas at Different Heights</b>', collapsed: true, selectAllCheckbox: false, children: [
-        {label: "Wind Energy (80m)", layer: layer_WindEnergy80m_3, default: false, radioGroup: 'raster'},
-        {label: "Wind Energy (100m)", layer: layer_WindEnergy100m_2, default: false, radioGroup: 'raster'},
-        {label: "Wind Energy (150m)", layer: layer_WindEnergy150m_1, default: false, radioGroup: 'raster'},
-    ]},
-
-    {label: "Carto Light (Basemap)", layer: layer_CartoLight_0, radioGroup: 'bm', default: true },
+    {
+        label: '<b>Potential Development Zones</b>', 
+        collapsed: false, 
+        selectAllCheckbox: false, 
+        children: [
+            {label: '<span style="font-size: 12px;">Small-scale Solar (< 1MW)</span>', layer: layer_SolarEnergy_18, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Solar (≥ 1MW)</span>', layer: layer_SolarEnergy_21, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Small-scale Wind (80m)</span>', layer: layer_WindEnergy80m_17, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Wind (100m)</span>', layer: layer_WindEnergy100m_20, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Small-scale Coco Biomass</span>', layer: layer_BiomassEnergyCocoshellhusk_16, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Coco Biomass</span>', layer: layer_BiomassEnergyCocoshellhusk_19, default: false, radioGroup: 'raster'},
+        ]
+    },
+    {
+        label: '<b>Solar Outlook (2030-2050)</b>', 
+        collapsed: true, 
+        selectAllCheckbox: false, 
+        children: [
+            {label: '<span style="font-size: 12px;">Large-scale Solar - Current</span>', layer: layer_SolarCurrent_15, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Solar - 2030</span>', layer: layer_Solar2030_14, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Solar - 2040</span>', layer: layer_Solar2040_13, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Solar - 2050</span>', layer: layer_Solar2050_12, default: false, radioGroup: 'raster'},
+        ]
+    },
+    {
+        label: '<b>Wind Outlook (2030-2050)</b>', 
+        collapsed: true, 
+        selectAllCheckbox: false, 
+        children: [
+            {label: '<span style="font-size: 12px;">Large-scale Wind - Current</span>', layer: layer_WindCurrent_11, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Wind - 2030</span>', layer: layer_Wind2030_10, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Wind - 2040</span>', layer: layer_Wind2040_9, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Wind - 2050</span>', layer: layer_Wind2050_8, default: false, radioGroup: 'raster'},
+        ]
+    },
+    {
+        label: '<b>Biomass Outlook (2030-2050)</b>', 
+        collapsed: true, 
+        selectAllCheckbox: false, 
+        children: [
+            {label: '<span style="font-size: 12px;">Large-scale Biomass - Current</span>', layer: layer_BiomassCurrent_7, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Biomass - 2030</span>', layer: layer_Biomass2030_6, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Biomass - 2040</span>', layer: layer_Biomass2040_5, default: false, radioGroup: 'raster'},
+            {label: '<span style="font-size: 12px;">Large-scale Biomass - 2050</span>', layer: layer_Biomass2050_4, default: false, radioGroup: 'raster'},
+        ]
+    },
+    {
+        label: '<b>Grid Assets</b>',
+        collapsed: true,
+        selectAllCheckbox: false,
+        children: [
+            {label: '<img src="legend/Substations_27.png" /> <span style="font-size: 12px;">Electrical Substations</span>', layer: layer_Substations_27},
+            {label: '<img src="legend/DistributionLinesr8_distribution_0.png" /> <span style="font-size: 12px;">Existing Distribution</span>', layer: layer_DistributionLinesr8_distribution_0},
+            {label: '<img src="legend/ExistingTransmissionLinesfromNGCP_26.png" /> <span style="font-size: 12px;">Existing Transmission</span>', layer: layer_ExistingTransmissionLinesfromNGCP_26},
+            {label: '<img src="legend/TDP20212030_25.png" /> <span style="font-size: 12px;">TDP 2021-2030</span>', layer: layer_TDP20212030_25},
+            {label: '<img src="legend/TDP20312040_24.png" /> <span style="font-size: 12px;">TDP 2031-2040</span>', layer: layer_TDP20412050_23},
+            {label: '<img src="legend/TDP20412050_23.png" /> <span style="font-size: 12px;">TDP 2041-2050</span>', layer: layer_TDP20412050_23},
+        ]
+    },
+    {
+        label: '<b>Auxiliary Layers</b>',
+        collapsed: true,
+        selectAllCheckbox: false,
+        children: [
+            {label: '<img src="legend/BuiltupAreasfromLandUse_1.png" /> <span style="font-size: 12px;">Built-up Areas (local land use)</span>', layer: layer_BuiltupAreasfromLandUse_1},
+            {label: '<img src="legend/Municipalities_3.png" /> <span style="font-size: 12px;">City/Municipal Boundary</span>', layer: layer_Municipalities_3},
+            {label: '<img src="legend/AOIEasternVisayas_22.png" /> <span style="font-size: 12px;">Regional Boundary</span>', layer: layer_AOIEasternVisayas_22},
+            {label: '<span style="font-size: 12px;">Carto Light Basemap</span>', layer: layer_CartoLight_0, default: true, radioGroup: 'basemap'}
+        ]
+    }
 ];
 
-        var lay = L.control.layers.tree(null, overlaysTree,{
-            collapsed: false,
+var lay = L.control.layers.tree(null, overlaysTree, {
+    collapsed: false,
+});
+lay.addTo(map);
+
+var layerList = lay.getContainer().querySelector('.leaflet-control-layers-list');
+
+var legendSection = L.DomUtil.create('div', 'embedded-legend', layerList);
+legendSection.style.cssText = 'width: 100%; margin-bottom: 6px; clear: both; font-family: inherit; color: #333;';
+
+legendSection.innerHTML = 
+    '<div class="legend-header" style="font-weight:bold; width:100%; margin-bottom:4px; padding-top:6px;">' +
+        '<span class="legend-title" style="font-size:14px; color:#222;">Zone Legend</span>' +
+    '</div>' +
+    '<div class="legend-content" style="width:100%;">' +
+        '<div class="legend-item" style="display:flex; align-items:center; line-height:1.2; margin-bottom:1px; padding-left:16px;"><span style="background:#fde725; width:12px; height:12px; display:inline-block; margin-right:8px; border-radius:2px; flex-shrink:0;"></span><span style="font-size:12px; color:#333;">Very High Suitability</span></div>' +
+        '<div class="legend-item" style="display:flex; align-items:center; line-height:1.2; margin-bottom:1px; padding-left:16px;"><span style="background:#5dc863; width:12px; height:12px; display:inline-block; margin-right:8px; border-radius:2px; flex-shrink:0;"></span><span style="font-size:12px; color:#333;">High Suitability</span></div>' +
+        '<div class="legend-item" style="display:flex; align-items:center; line-height:1.2; margin-bottom:1px; padding-left:16px;"><span style="background:#21908d; width:12px; height:12px; display:inline-block; margin-right:8px; border-radius:2px; flex-shrink:0;"></span><span style="font-size:12px; color:#333;">Moderate Suitability</span></div>' +
+        '<div class="legend-item" style="display:flex; align-items:center; line-height:1.2; margin-bottom:1px; padding-left:16px;"><span style="background:#3b528b; width:12px; height:12px; display:inline-block; margin-right:8px; border-radius:2px; flex-shrink:0;"></span><span style="font-size:12px; color:#333;">Low Suitability</span></div>' +
+        '<div class="legend-item" style="display:flex; align-items:center; line-height:1.2; margin-bottom:1px; padding-left:16px;"><span style="background:#440154; width:12px; height:12px; display:inline-block; margin-right:8px; border-radius:2px; flex-shrink:0;"></span><span style="font-size:12px; color:#333;">Very Low Suitability</span></div>' +
+    '</div>';
+
+layerList.insertBefore(legendSection, layerList.firstChild);
+
+var titleDiv = L.DomUtil.create('div', 'tree-title', layerList);
+titleDiv.style.cssText = 'width: 100%; margin-bottom: 4px; padding-top: 6px; font-family: inherit;';
+titleDiv.innerHTML = '<div style="font-weight: bold; font-size: 14px; color: #222;">Map Layers</div>';
+
+layerList.insertBefore(titleDiv, legendSection.nextSibling);
+
+var legendHeader = legendSection.querySelector('.legend-header');
+var legendContent = legendSection.querySelector('.legend-content');
+var legendIcon = legendSection.querySelector('.legend-toggle-icon');
+
+legendHeader.onclick = function() {
+    if (legendContent.style.display === 'none') {
+        legendContent.style.display = 'block';
+        legendIcon.innerHTML = '−';
+    } else {
+        legendContent.style.display = 'none';
+        legendIcon.innerHTML = '+';
+    }
+};
+
+L.DomEvent.disableClickPropagation(lay.getContainer());
+L.DomEvent.disableScrollPropagation(lay.getContainer());
+
+document.addEventListener("DOMContentLoaded", function() {
+    function newLayersListHeight() {
+        var layerScrollbarElement = document.querySelector('.leaflet-control-layers-scrollbar');
+        if (layerScrollbarElement) {
+            var layersListElement = document.querySelector('.leaflet-control-layers-list');
+            var originalHeight = layersListElement.style.height 
+                || window.getComputedStyle(layersListElement).height;
+            var newHeight = parseFloat(originalHeight) - 50;
+            layersListElement.style.height = newHeight + 'px';
+        }
+    }
+
+    var controlLayersElement = document.querySelector('.leaflet-control-layers');
+    if (controlLayersElement) {
+        controlLayersElement.addEventListener('click', function(event) {
+            var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
+            if (toggleLayerHeaderPointer) {
+                newLayersListHeight();
+            }
         });
-        lay.addTo(map);
+    }
+});        
 
-        document.addEventListener("DOMContentLoaded", function() {
-            function newLayersListHeight() {
-                var layerScrollbarElement = document.querySelector('.leaflet-control-layers-scrollbar');
-                if (layerScrollbarElement) {
-                    var layersListElement = document.querySelector('.leaflet-control-layers-list');
-                    var originalHeight = layersListElement.style.height 
-                        || window.getComputedStyle(layersListElement).height;
-                    var newHeight = parseFloat(originalHeight) - 50;
-                    layersListElement.style.height = newHeight + 'px';
-                }
-            }
-            var isLayersListExpanded = true;
-            var controlLayersElement = document.querySelector('.leaflet-control-layers');
-            var toggleLayerControl = document.querySelector('.leaflet-control-layers-toggle');
-            toggleLayerControl.addEventListener('click', function() {
-                if (isLayersListExpanded) {
-                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
-                } else {
-                    controlLayersElement.classList.add('leaflet-control-layers-expanded');
-                }
-                isLayersListExpanded = !isLayersListExpanded;
-                newLayersListHeight()
-            });	
-            if (controlLayersElement) {
-                controlLayersElement.addEventListener('click', function(event) {
-                    var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
-                    if (toggleLayerHeaderPointer) {
-                        newLayersListHeight();
-                    }
-                });
-            }
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            var isSmallScreen = window.innerWidth < 650;
-            if (isSmallScreen) {
-                setTimeout(function() {
-                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
-                    isLayersListExpanded = !isLayersListExpanded;
-                }, 500);
-            }  
-        });       
+setBounds();
 
-        setBounds();
-
-        L.ImageOverlay.include({
-            getBounds: function () {
-                return this._bounds;
-            }
-        });
-        </script>        
-    </body>
+L.ImageOverlay.include({
+    getBounds: function () {
+        return this._bounds;
+    }
+});
+</script>        
+</body>
 </html>
