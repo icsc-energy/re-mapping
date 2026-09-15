@@ -8,7 +8,7 @@ Current Release:
 
 2026-09-10 
 Region VIII (Eastern Visayas) Philippines
-Solar, Wind, Biomass
+<br>Solar, Wind, Biomass
 
 
 Release History:
